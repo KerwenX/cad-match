@@ -1,14 +1,13 @@
 ## Train on ULIP-2 model
 
 ## Install environments
-```conda create -n cad python=3.8```\
-```conda activate cad```\
-```conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cudatoolkit=11.3 -c pytorch -c conda-forge``` \
-```pip install -r requirements.txt```
-
-install submodule
-
 ```shell
+conda create -n cad python=3.8
+conda activate cad
+conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cudatoolkit=11.3 -c pytorch -c conda-forge
+pip install -r requirements.txt
+
+## install the submodule
 # install PointNeXt
 cd ./models/pointnext/PointNeXt
 bash update.sh
@@ -65,13 +64,25 @@ Pretrain PointBert
 If you have multiple GPUs
 
 ```shell
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_per_node=8 main.py --model ULIP_PointBERT --npoints 8192 --lr 3e-3 --output-dir ./outputs/reproduce_pointbert_8kpts
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_per_node=8 main.py \
+--model ULIP_PointBERT \
+--npoints 8192 \
+--lr 3e-3 \
+--output-dir ./outputs/reproduce_pointbert_8kpts \
+ --epochs 2000 \
+ --batch-size 1024
 ```
 
 Only one GPU
 
 ```shell
-CUDA_VISIBLE_DEVICES=0 python main.py --model ULIP_PointBERT --npoints 8192 --lr 3e-3 --output-dir ./outputs/reproduce_pointbert_8kpts
+CUDA_VISIBLE_DEVICES=0 python main.py \
+ --model ULIP_PointBERT \
+ --npoints 8192 \
+ --lr 3e-3 \
+ --output-dir outputs/reproduce_pointbert_8kpts \
+ --epochs 2000 \
+ --batch-size 8
 ```
 
 ### Test model
