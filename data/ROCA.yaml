@@ -1,0 +1,4 @@
+NAME: ROCA
+DATA_PATH: data/ROCA
+PC_PATH: data/ROCA/roca_pc
+IMAGE_PATH: data/ROCA/rendered_images
