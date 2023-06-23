@@ -6,6 +6,14 @@
 ```conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cudatoolkit=11.3 -c pytorch -c conda-forge``` \
 ```pip install -r requirements.txt```
 
+install submodule
+
+```shell
+cd ./models/pointnext/PointNeXt
+bash update.sh
+bash install.sh
+```
+
 
 ## Download datasets and initialize models
 Download the used datasets and initialize models from [here](https://console.cloud.google.com/storage/browser/sfr-ulip-code-release-research).
@@ -64,6 +72,17 @@ bash scripts/test_pointbert.sh <check_point_path>
 bash scripts/test_pointbert.sh ./outputs/reproduce_pointbert_8kpts/checkpoint_best.pt
 
 ```
+
+# Pre-trained models for zero-shot classification
+Zero-shot classification on ModelNet40, 8k points pre-train, 8k points test, best checkpoint:
+
+| model                                                                                                                                                                   | top1 | top5 |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------|------|
+| [Pointnet2(ssg)](https://storage.cloud.google.com/sfr-ulip-code-release-research/pretrained_models/ckpt_zero-sho_classification/checkpoint_pointnet2_ssg.pt?authuser=0) | 57.7 | 78.9 |
+| [PointMLP](https://storage.cloud.google.com/sfr-ulip-code-release-research/pretrained_models/ckpt_zero-sho_classification/checkpoint_pointmlp.pt?authuser=0)            | 60.0 | 79.4 |
+| [PointBERT](https://storage.cloud.google.com/sfr-ulip-code-release-research/pretrained_models/ckpt_zero-sho_classification/checkpoint_pointbert.pt?authuser=0)          | 60.3 | 84.0 |
+| [PointNeXt](https://storage.cloud.google.com/sfr-ulip-code-release-research/pretrained_models/ckpt_zero-sho_classification/checkpoint_pointnext.pt?authuser=0)          | 56.2 | 77.0 |
+| [PointBERT_ULIP-2](https://storage.cloud.google.com/sfr-ulip-code-release-research/pretrained_models/ckpt_zero-sho_classification/pointbert_ULIP-2.pt) | 75.6 | 93.7 |
 
 
 
