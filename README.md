@@ -27,7 +27,7 @@ cd ../..
 
 
 ## Download datasets and initialize models
-Download the used datasets and initialize models from [here](https://console.cloud.google.com/storage/browser/sfr-ulip-code-release-research).
+Download the used datasets and initialize models from [here](https://drive.google.com/drive/folders/14Oxh4X7xxpn3RPJy8_AlrhKC0emC0VZ7?usp=sharing).
 
 The `data/` folder should have the following structure:
 ```
