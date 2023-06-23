@@ -1,4 +1,4 @@
-## we use ULIP-2 model
+## Train on ULIP-2 model
 
 ## Install environments
 ```conda create -n cad python=3.8```\
@@ -9,9 +9,20 @@
 install submodule
 
 ```shell
+# install PointNeXt
 cd ./models/pointnext/PointNeXt
 bash update.sh
 bash install.sh
+cd ../../
+
+# install pointnet2
+git clone https://github.com/erikwijmans/Pointnet2_PyTorch.git
+cd Pointnet2_PyTorch
+pip install -r requirements.txt
+
+# install KNN_CUDA
+pip install --upgrade https://github.com/unlimblue/KNN_CUDA/releases/download/0.2/KNN_CUDA-0.2-py3-none-any.whl
+cd ../..
 ```
 
 
@@ -70,7 +81,6 @@ bash scripts/test_pointbert.sh <check_point_path>
 
 # e.g.
 bash scripts/test_pointbert.sh ./outputs/reproduce_pointbert_8kpts/checkpoint_best.pt
-
 ```
 
 # Pre-trained models for zero-shot classification

@@ -2,3 +2,4 @@ data/ROCA
 data/initialize_models
 data/modelnet40_normal_resampled
 output/
+models/Pointnet2_PyTorch
