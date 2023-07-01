@@ -561,7 +561,10 @@ class ROCA(data.Dataset):
         picked_model_rendered_image_addr = self.rendered_image_addr + '/' +\
                                            sample['taxonomy_id'] + '-' + sample['model_id'] + '/'
 
-        picked_image_name = str(random.choice(os.listdir(picked_model_rendered_image_addr)))
+        picked_image_name = str(random.choice(os.listdir(picked_model_rendered_image_addr)))\
+            .replace('_albedo','')\
+            .replace('_depth','')\
+            .replace('_mask','')
         picked_image_addr = picked_model_rendered_image_addr + picked_image_name
         # picked_image_name = sample['taxonomy_id'] + '-' + sample['model_id'] + '_r_' +\
         #                     str(random.choice(self.picked_rotation_degrees)) +\
