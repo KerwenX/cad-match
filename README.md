@@ -7,6 +7,7 @@ conda activate cad
 conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cudatoolkit=11.3 -c pytorch -c conda-forge
 pip install -r requirements.txt
 
+cd cad-match/
 ## install the submodule
 # install PointNeXt
 cd ./models/pointnext/PointNeXt
@@ -82,7 +83,7 @@ CUDA_VISIBLE_DEVICES=0 python main.py \
  --lr 3e-3 \
  --output-dir outputs/reproduce_pointbert_8kpts \
  --epochs 2000 \
- --batch-size 8
+ --batch-size 128
 ```
 
 ### Test model
