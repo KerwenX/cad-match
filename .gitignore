@@ -5,4 +5,4 @@ output/
 models/Pointnet2_PyTorch
 models/pointbert/__pycache__/checkpoint.cpython-38.pyc
 models/pointbert/__pycache__/logger.cpython-38.pyc
-
+outputs/
