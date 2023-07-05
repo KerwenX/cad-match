@@ -69,7 +69,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_
 --model ULIP_PointBERT \
 --npoints 8192 \
 --lr 3e-3 \
---output-dir ./outputs/reproduce_pointbert_8kpts \
+--output-dir ./outputs/reproduce_pointbert_8kpts_2 \
  --epochs 2000 \
  --batch-size 1024
 ```
@@ -81,7 +81,7 @@ CUDA_VISIBLE_DEVICES=0 python main.py \
  --model ULIP_PointBERT \
  --npoints 8192 \
  --lr 3e-3 \
- --output-dir outputs/reproduce_pointbert_8kpts \
+ --output-dir outputs/reproduce_pointbert_8kpts_2 \
  --epochs 2000 \
  --batch-size 128
 ```
@@ -92,7 +92,7 @@ CUDA_VISIBLE_DEVICES=0 python main.py \
 bash scripts/test_pointbert.sh <check_point_path>
 
 # e.g.
-bash scripts/test_pointbert.sh ./outputs/reproduce_pointbert_8kpts/checkpoint_best.pt
+bash scripts/test_pointbert.sh ./outputs/reproduce_pointbert_8kpts_2/checkpoint_best.pt
 ```
 
 # Pre-trained models for zero-shot classification

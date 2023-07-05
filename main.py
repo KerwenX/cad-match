@@ -78,7 +78,7 @@ def get_args_parser():
     parser.add_argument('--wandb', action='store_true', help='Enable WandB logging')
 
     # parser.add_argument('--test_ckpt_addr', default='ckpts/pretrained_models_ckpt_zero-sho_classification_pointbert_ULIP-2.pt', help='the ckpt to test 3d zero shot')
-    # parser.add_argument('--test_ckpt_addr', default='outputs/reproduce_pointbert_8kpts/checkpoint_best.pt', help='the ckpt to test 3d zero shot')
+    # parser.add_argument('--test_ckpt_addr', default='outputs/reproduce_pointbert_8kpts_2/checkpoint_best.pt', help='the ckpt to test 3d zero shot')
     parser.add_argument('--test_ckpt_addr', default='', help='the ckpt to test 3d zero shot')
     return parser
 
