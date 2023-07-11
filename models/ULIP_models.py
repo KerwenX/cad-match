@@ -150,26 +150,28 @@ class ULIP_WITH_IMAGE(nn.Module):
 
     def forward(self, pc, text, image=None):
 
-        text_embed_all = []
-        for i in range(text.shape[0]):
-            text_for_one_sample = text[i]
-            text_embed = self.encode_text(text_for_one_sample)
-            text_embed = text_embed / text_embed.norm(dim=-1, keepdim=True)
-            text_embed = text_embed.mean(dim=0)
-            text_embed = text_embed / text_embed.norm(dim=-1, keepdim=True)
-            text_embed_all.append(text_embed)
-
-        text_embed_all = torch.stack(text_embed_all)
+        # text_embed_all = []
+        # for i in range(text.shape[0]):
+        #     text_for_one_sample = text[i]
+        #     text_embed = self.encode_text(text_for_one_sample)
+        #     text_embed = text_embed / text_embed.norm(dim=-1, keepdim=True)
+        #     text_embed = text_embed.mean(dim=0)
+        #     text_embed = text_embed / text_embed.norm(dim=-1, keepdim=True)
+        #     text_embed_all.append(text_embed)
+        #
+        # text_embed_all = torch.stack(text_embed_all)
         pc_embed = self.encode_pc(pc)
         if image is not None:
             image_embed = self.encode_image(image)
-            return {'text_embed': text_embed_all,
+            return {
+                # 'text_embed': text_embed_all,
                     'pc_embed': pc_embed,
                     'image_embed': image_embed,
                     'logit_scale': self.logit_scale.exp()}
 
         else:
-            return {'text_embed': text_embed_all,
+            return {
+                # 'text_embed': text_embed_all,
                     'pc_embed': pc_embed,
                     'logit_scale': self.logit_scale.exp()}
 
@@ -179,7 +181,8 @@ def get_loss(args):
 
 
 def get_metric_names(model):
-    return ['loss', 'ulip_loss', 'ulip_pc_image_acc', 'ulip_pc_text_acc']
+    return ['loss', 'ulip_loss', 'ulip_image_pc_acc']
+    # return ['loss', 'ulip_loss', 'ulip_pc_image_acc', 'ulip_pc_text_acc']
 
 
 def ULIP_PN_SSG(args):

@@ -30,7 +30,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 def get_args_parser():
     parser = argparse.ArgumentParser(description='ULIP training and evaluation', add_help=False)
     # Data
-    parser.add_argument('--output-dir', default='./outputs/reproduce_pointbert_8kpts', type=str, help='output dir')
+    parser.add_argument('--output-dir', default='./outputs/reproduce_pointbert_8kpts_only_image', type=str, help='output dir')
     parser.add_argument('--pretrain_dataset_name', default='ROCA', type=str)
     parser.add_argument('--pretrain_dataset_prompt', default='shapenet_64', type=str)
     parser.add_argument('--validate_dataset_name', default='modelnet40', type=str)
@@ -40,12 +40,12 @@ def get_args_parser():
     # Model
     parser.add_argument('--model', default='ULIP_PointBERT', type=str)
     # Training
-    parser.add_argument('--epochs', default=1550, type=int)
+    parser.add_argument('--epochs', default=2550, type=int)
     parser.add_argument('--warmup-epochs', default=1, type=int)
     parser.add_argument('--start-epoch', default=0, type=int)
     parser.add_argument('--batch-size', default=13, type=int,
                         help='number of samples per-device/per-gpu')
-    parser.add_argument('--lr', default=3e-3, type=float)
+    parser.add_argument('--lr', default=1e-4, type=float)
     parser.add_argument('--lr-start', default=1e-6, type=float,
                         help='initial warmup lr')
     parser.add_argument('--lr-end', default=1e-5, type=float,
@@ -58,7 +58,7 @@ def get_args_parser():
     parser.add_argument('--eval-freq', default=20, type=int)
     parser.add_argument('--disable-amp', action='store_true',
                         help='disable mixed-precision training (requires more memory and compute)')
-    parser.add_argument('--resume', default='', type=str, help='path to resume from')
+    parser.add_argument('--resume', default='/home/aston/Desktop/python/cad-match/outputs/reproduce_pointbert_8kpts_only_image/checkpoint_2001.pt', type=str, help='path to resume from')
 
     # System
     parser.add_argument('--print-freq', default=10, type=int, help='print frequency')
@@ -211,15 +211,17 @@ def main(args):
 
         if epoch % args.eval_freq == 0 or epoch + 1 == args.epochs:
 
-            val_stats = test_zeroshot_3d_core(val_loader, model, tokenizer, args)
-            acc1 = val_stats["acc1"]
-            print(val_stats)
-
-            is_best = acc1 > best_acc1
-            if is_best:
-                best_epoch = epoch
-
-            best_acc1 = max(acc1, best_acc1)
+            # val_stats = test_zeroshot_3d_core(val_loader, model, tokenizer, args)
+            # acc1 = val_stats["acc1"]
+            # print(val_stats)
+            #
+            # is_best = acc1 > best_acc1
+            # if is_best:
+            #     best_epoch = epoch
+            #
+            # best_acc1 = max(acc1, best_acc1)
+            #
+            is_best = False
 
             if is_best or epoch % 50 == 0:
                 print("=> saving checkpoint")
